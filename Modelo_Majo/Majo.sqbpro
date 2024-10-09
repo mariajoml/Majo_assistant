@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="Majo.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1071"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Certifications" custom_title="0" dock_id="1" table="4,14:mainCertifications"/><dock_state state="000000ff00000000fd00000001000000020000024800000215fc0100000001fb000000160064006f0063006b00420072006f00770073006500310100000000000002480000011e00ffffff000002480000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1*">-- Crear la tabla Person
+CREATE TABLE IF NOT EXISTS Person (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    birth_date TEXT,
+    birth_place TEXT,
+    current_age INTEGER,
+    profession TEXT
+);
+
+-- Crear la tabla Interests
+CREATE TABLE IF NOT EXISTS Interests (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    interest TEXT,
+    FOREIGN KEY(person_id) REFERENCES Person(id)
+);
+
+-- Crear la tabla Certifications
+CREATE TABLE IF NOT EXISTS Certifications (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    certification TEXT,
+    status TEXT,
+    FOREIGN KEY(person_id) REFERENCES Person(id)
+);
+
+-- Crear la tabla Languages
+CREATE TABLE IF NOT EXISTS Languages (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    language TEXT,
+    proficiency_level TEXT,
+    FOREIGN KEY(person_id) REFERENCES Person(id)
+);
+
+-- Crear la tabla Pets
+CREATE TABLE IF NOT EXISTS Pets (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    pet_type TEXT,
+    pet_name TEXT,
+    FOREIGN KEY(person_id) REFERENCES Person(id)
+);
+
+-- Crear la tabla Sports
+CREATE TABLE IF NOT EXISTS Sports (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    sport TEXT,
+    achievement TEXT,
+    FOREIGN KEY(person_id) REFERENCES Person(id)
+);
+
+-- Insertar datos en la tabla Person
+INSERT INTO Person (name, birth_date, birth_place, current_age, profession)
+VALUES ('Maria Jose Muñoz', '2001-10-23', 'Rionegro', 22, 'Student of Mechatronics Engineering');
+
+-- Insertar intereses en la tabla Interests
+INSERT INTO Interests (person_id, interest)
+VALUES 
+    (1, 'technology'),
+    (1, 'development'),
+    (1, 'AI models (CNN, Faster R-CNN)'),
+    (1, 'bot development'),
+    (1, 'API usage'),
+    (1, 'Python'),
+    (1, 'deep learning'),
+    (1, 'machine learning'),
+    (1, 'innovation'),
+    (1, 'staying active');
+
+-- Insertar certificaciones en la tabla Certifications
+INSERT INTO Certifications (person_id, certification, status)
+VALUES 
+    (1, 'Soft Skills', 'completed'),
+    (1, 'Machine Learning', 'in progress');
+
+-- Insertar idiomas en la tabla Languages
+INSERT INTO Languages (person_id, language, proficiency_level)
+VALUES 
+    (1, 'Spanish', 'fluent'),
+    (1, 'English', 'fluent'),
+    (1, 'French', 'basic');
+
+-- Insertar mascota en la tabla Pets
+INSERT INTO Pets (person_id, pet_type, pet_name)
+VALUES 
+    (1, 'dog', 'Melody');
+
+-- Insertar deportes en la tabla Sports
+INSERT INTO Sports (person_id, sport, achievement)
+VALUES 
+    (1, 'cheerleading', ''),
+    (1, 'swimming', ''),
+    (1, 'horse riding', ''),
+    (1, 'ballet', ''),
+    (1, 'gymnastics', ''),
+    (1, 'tennis', ''),
+    (1, 'speed skating', 'national league');
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
